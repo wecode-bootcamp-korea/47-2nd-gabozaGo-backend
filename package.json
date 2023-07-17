@@ -15,8 +15,8 @@
     "jest": "^29.6.1",
     "morgan": "^1.10.0",
     "mysql2": "^3.3.3",
-    "typeorm": "^0.3.17",
-    "supertest": "^6.3.3"
+    "supertest": "^6.3.3",
+    "typeorm": "^0.3.17"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
