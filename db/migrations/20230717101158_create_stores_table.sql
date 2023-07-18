@@ -1,4 +1,4 @@
--- migrate:up
+                -- migrate:up
 CREATE TABLE stores (
     id INT NOT NULL AUTO_INCREMENT,
     activity_id INT NOT NULL,
@@ -14,5 +14,5 @@ CREATE TABLE stores (
     PRIMARY KEY(id)
 );
 
--- migrate:down
+-- migrate:down             
 DROP TABLE stores;
