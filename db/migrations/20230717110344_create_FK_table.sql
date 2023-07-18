@@ -23,8 +23,6 @@ ALTER TABLE store_activity_images
 ADD FOREIGN KEY (store_activity_id) REFERENCES store_activities(id);
 ALTER TABLE store_activity_reviews
 ADD FOREIGN KEY (store_activity_id) REFERENCES store_activities(id);
-ALTER TABLE orders
-ADD FOREIGN KEY (store_activity_id) REFERENCES store_activities(id);
 ALTER TABLE store_activities
 ADD FOREIGN KEY (store_id) REFERENCES stores(id);
 ALTER TABLE payments
