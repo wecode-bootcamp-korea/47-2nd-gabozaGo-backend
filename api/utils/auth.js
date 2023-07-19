@@ -23,4 +23,26 @@ const loginRequired = async (req, res, next) => {
   next();
 };
 
-module.exports = { loginRequired };
+const mainPageRequired = async (req, res, next) => {
+  const accessToken = req.headers.authorization;
+  if (!accessToken) {
+    return next();
+  }
+  try {
+    const decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
+    const user = await userDao.getUserById(decodedToken.userId);
+    if (!user) {
+      const error = new Error("INVALID_ACCESS_TOKEN");
+      error.statusCode = 401;
+      throw error;
+    }
+    req.user = user;
+    next();
+  } catch (err) {
+    const error = new Error("INVALID_ACCESS_TOKEN");
+    error.statusCode = 401;
+    throw error;
+  }
+};
+
+module.exports = { loginRequired, mainPageRequired };
