@@ -3,7 +3,7 @@ CREATE TABLE orders (
     id INT NOT NULL AUTO_INCREMENT,
     order_number INT NOT NULL,
     user_id INT NOT NULL,
-    store_activty_id INT NOT NULL,
+    store_activity_id INT NOT NULL,
     date TIMESTAMP NOT NULL DEFAULT NOW(),
     head_count INT NOT NULL,
     total_price DECIMAL(10,2) NOT NULL,
