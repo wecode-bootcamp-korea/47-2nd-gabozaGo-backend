@@ -1,4 +1,4 @@
-                -- migrate:up
+-- migrate:up
 CREATE TABLE stores (
     id INT NOT NULL AUTO_INCREMENT,
     activity_id INT NOT NULL,
