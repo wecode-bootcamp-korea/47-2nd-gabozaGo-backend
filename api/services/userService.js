@@ -64,6 +64,25 @@ const signIn = async (kakaoCode) => {
   return { newUser, accessToken };
 };
 
+const updateUserInfo = async (
+  userId,
+  userSpot,
+  userActivities,
+  { socialPlatform, phoneNumber }
+) => {
+  try {
+    await userDao.updateUserInfo.execute(userId, userSpot, userActivities, {
+      socialPlatform,
+      phoneNumber,
+    });
+    return { message: "SUCCESS_UPDATE_USER_INFO" };
+  } catch (err) {
+    console.error(err);
+    return { message: "UPDATE_USER_INFO_FAILED" };
+  }
+};
+
 module.exports = {
+  updateUserInfo,
   signIn,
 };
