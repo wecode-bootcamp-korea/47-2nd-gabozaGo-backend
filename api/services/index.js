@@ -1,5 +1,7 @@
+const userService = require("./userService");
 const orderService = require("./orderService");
 
-module.expports = {
+module.exports = {
+  userService,
   orderService,
 };

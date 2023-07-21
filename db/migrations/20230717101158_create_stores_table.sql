@@ -14,5 +14,5 @@ CREATE TABLE stores (
     PRIMARY KEY(id)
 );
 
--- migrate:down
+-- migrate:down             
 DROP TABLE stores;
