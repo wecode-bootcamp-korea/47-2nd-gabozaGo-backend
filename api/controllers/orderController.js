@@ -18,7 +18,7 @@ const orderWithPoint = catchAsync(async (req, res) => {
     headCount
   );
 
-  res.status(201).json({ message: "RESERVATION_SUCCESS" });
+  return res.status(201).json({ message: "RESERVATION_SUCCESS" });
 });
 
 module.exports = { orderWithPoint };

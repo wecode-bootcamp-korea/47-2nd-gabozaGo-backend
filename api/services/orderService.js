@@ -27,27 +27,34 @@ const checkAndPurchaseWithPoint = async (
   date,
   headCount
 ) => {
-  const headCountCapacity = await headCountCapacityCheck(storeActivityId, date);
-  const reservationRoom = headCountCapacity - headCount;
-  if (reservationRoom < 0) {
-    const error = new Error("HEAD_COUNT_EXCEED");
-    error.statusCode = 403;
+  try {
+    const headCountCapacity = await headCountCapacityCheck(
+      storeActivityId,
+      date
+    );
+    const reservationRoom = headCountCapacity - headCount;
+    if (reservationRoom < 0) {
+      const error = new Error("HEAD_COUNT_EXCEED");
+      error.statusCode = 403;
+      throw error;
+    }
+    const totalPrice = await calculateTotalPrice(storeActivityId, headCount);
+    const userPoint = await getUserPoint(userId);
+    if (totalPrice > userPoint) {
+      const error = new Error("NOT_ENOUGH_POINT");
+      error.statusCode = 403;
+      throw error;
+    }
+    await orderDao.purchaseWithPoint(
+      userId,
+      storeActivityId,
+      date,
+      headCount,
+      totalPrice
+    );
+  } catch (error) {
     throw error;
   }
-  const totalPrice = await calculateTotalPrice(storeActivityId, headCount);
-  const userPoint = await getUserPoint(userId);
-  if (totalPrice > userPoint) {
-    const error = new Error("NOT_ENOUGH_POINT");
-    error.statusCode = 403;
-    throw error;
-  }
-  return await orderDao.purchaseWithPoint(
-    userId,
-    storeActivityId,
-    date,
-    headCount,
-    totalPrice
-  );
 };
 
 module.exports = { checkAndPurchaseWithPoint };
