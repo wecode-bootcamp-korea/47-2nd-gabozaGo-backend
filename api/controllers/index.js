@@ -4,10 +4,12 @@ const activitiesController = require("./activitiesController");
 const reviewsController = require("./reviewsController");
 const storeActivityController = require("./storeActivityController");
 const likesController = require("./likesController");
+const orderController = require("./orderController");
 
 module.exports = {
   activitiesController,
   spotsController,
+  orderController,
   userController,
   reviewsController,
   likesController,
