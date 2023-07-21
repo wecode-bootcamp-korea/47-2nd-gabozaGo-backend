@@ -1,6 +1,7 @@
 const { orderService } = require("../services");
+const { catchAsync } = require("../utils/error");
 
-const orderWithPoint = async (req, res) => {
+const orderWithPoint = catchAsync(async (req, res) => {
   const userId = req.user.id;
   const { storeActivityId, date, headCount } = req.body;
 
@@ -18,6 +19,6 @@ const orderWithPoint = async (req, res) => {
   );
 
   res.status(201).json({ message: "RESERVATION_SUCCESS" });
-};
+});
 
 module.exports = { orderWithPoint };
