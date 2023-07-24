@@ -35,8 +35,35 @@ const deleteLikes = async (userId, targetId) => {
   );
 };
 
+const getUserLikes = async (userId) => {
+  const result = await dataSource.query(
+    `SELECT 
+    likes.target_id AS storeActivityId,
+    stores.name AS storeName,
+    spots.name AS spotName,
+    store_activities.per_price AS perPrice,
+    activities.name AS activityName,
+    (SELECT image FROM store_activity_images WHERE store_activity_id = likes.target_id LIMIT 1) AS image
+FROM 
+    likes 
+JOIN 
+    store_activities ON likes.target_id = store_activities.id
+JOIN
+    activities ON store_activities.activity_id = activities.id
+JOIN
+    stores ON store_activities.store_id = stores.id
+JOIN
+    spots ON stores.spot_id = spots.id
+WHERE 
+    likes.user_id = ?`,
+    [userId]
+  );
+  return result;
+};
+
 module.exports = {
-  createLikes,
   getLikes,
+  createLikes,
   deleteLikes,
+  getUserLikes,
 };

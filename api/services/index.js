@@ -12,4 +12,5 @@ module.exports = {
   likesService,
   reviewsService,
   storeActivityService,
+  likesService,
 };

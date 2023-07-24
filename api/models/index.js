@@ -11,6 +11,7 @@ module.exports = {
   userDao,
   spotsDao,
   activitiesDao,
+  likesDao,
   reviewsDao,
   storeActivityDao,
   likesDao,
