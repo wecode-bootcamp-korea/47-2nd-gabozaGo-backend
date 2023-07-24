@@ -1,12 +1,7 @@
 const dataSource = require("./dataSource");
 
 const updateUserInfo = {
-  async execute(
-    userId,
-    userSpot,
-    userActivities,
-    { socialPlatform, phoneNumber }
-  ) {
+  async execute(userId, userSpot, userActivities, { socialPlatform, phoneNumber }) {
     const queryRunner = await dataSource.createQueryRunner();
 
     try {

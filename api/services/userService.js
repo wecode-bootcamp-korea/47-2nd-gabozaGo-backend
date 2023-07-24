@@ -49,11 +49,7 @@ const signIn = async (kakaoCode) => {
     newUser = true;
   }
 
-  let accessToken = jwt.sign(
-    { userId: user[0].id },
-    process.env.JWT_SECRET,
-    jwtOptions
-  );
+  let accessToken = jwt.sign({ userId: user[0].id }, process.env.JWT_SECRET, jwtOptions);
 
   if (user.length > 0) {
     if (user[0].signup_status === 0) {
@@ -64,12 +60,7 @@ const signIn = async (kakaoCode) => {
   return { newUser, accessToken };
 };
 
-const updateUserInfo = async (
-  userId,
-  userSpot,
-  userActivities,
-  { socialPlatform, phoneNumber }
-) => {
+const updateUserInfo = async (userId, userSpot, userActivities, { socialPlatform, phoneNumber }) => {
   try {
     await userDao.updateUserInfo.execute(userId, userSpot, userActivities, {
       socialPlatform,
