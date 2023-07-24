@@ -1,6 +1,13 @@
 const likesService = require("../services/likesService");
 const { catchAsync } = require("../utils/error");
 
+const getLikes = catchAsync(async (req, res) => {
+  const userId = req.user.id;
+  const likes = await likesService.getUserLikes(userId);
+  return res.status(200).json({ data: likes });
+});
+
+
 const createLikes = catchAsync(async (req, res) => {
   const userId = req.user.id;
   const targetId = req.params.targetId;
@@ -10,4 +17,5 @@ const createLikes = catchAsync(async (req, res) => {
 
 module.exports = {
   createLikes,
+  getLikes,
 };

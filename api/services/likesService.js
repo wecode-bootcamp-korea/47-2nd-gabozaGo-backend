@@ -11,6 +11,10 @@ const createLikes = async (userId, targetId) => {
   }
 };
 
+const getUserLikes = async (userId) => {
+  return await likesDao.getUserLikes(userId);
+};
 module.exports = {
+  getUserLikes,
   createLikes,
 };
