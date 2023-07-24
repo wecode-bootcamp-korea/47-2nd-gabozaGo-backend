@@ -7,7 +7,6 @@ const getLikes = catchAsync(async (req, res) => {
   return res.status(200).json({ data: likes });
 });
 
-
 const createLikes = catchAsync(async (req, res) => {
   const userId = req.user.id;
   const targetId = req.params.targetId;

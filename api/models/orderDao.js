@@ -1,5 +1,28 @@
 const dataSource = require("./dataSource");
 
+const getReservedHeadCountList = async (
+  storeActivityId,
+  startDate,
+  endDate
+) => {
+  const reservedHeadCountList = await dataSource.query(
+    `
+    SELECT
+      DATE_FORMAT(date, '%Y-%m-%d') AS date,
+      SUM(head_count) AS reservedHeadCount
+    FROM orders
+    WHERE
+      store_activity_id = ?
+      AND date BETWEEN ? AND ?
+      AND order_status = 'approved'
+      AND reservation_status = 'beforeReservation'
+    GROUP BY date
+    `,
+    [storeActivityId, startDate, endDate]
+  );
+  return reservedHeadCountList;
+};
+
 const getMaxHeadCount = async (storeActivityId) => {
   const [result] = await dataSource.query(
     `SELECT 
@@ -181,9 +204,27 @@ const purchaseWithPoint = async (
   }
 };
 
+const storeActivityIdCheck = async (storeActivityId) => {
+  const [result] = await dataSource.query(
+    `
+    SELECT EXISTS 
+    (
+      SELECT id
+      FROM store_activities
+      WHERE id = ?
+    ) 
+    exist
+    `,
+    [storeActivityId]
+  );
+  return !!parseInt(result.exist);
+};
+
 module.exports = {
   getMaxHeadCount,
   getReservedHeadCount,
   getStoreActivityPerPrice,
   purchaseWithPoint,
+  storeActivityIdCheck,
+  getReservedHeadCountList,
 };
