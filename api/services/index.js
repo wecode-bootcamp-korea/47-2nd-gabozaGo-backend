@@ -5,7 +5,7 @@ const activitiesService = require("./activitiesService");
 const reviewsService = require("./reviewsService");
 const storeActivityService = require("./storeActivityService");
 const likesService = require("./likesService");
-const reviewsService = require("./reviewsService.js");
+const reservationService = require("./reservationService");
 
 module.exports = {
   activitiesService,
@@ -15,4 +15,5 @@ module.exports = {
   storeActivityService,
   likesService,
   orderService,
+  reservationService,
 };

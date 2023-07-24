@@ -7,12 +7,7 @@ const updateUserInfo = catchAsync(async (req, res) => {
 
   const userId = req.user.id;
 
-  const result = await userService.updateUserInfo(
-    userId,
-    userSpots,
-    userActivities,
-    { phoneNumber, socialPlatform }
-  );
+  const result = await userService.updateUserInfo(userId, userSpots, userActivities, { phoneNumber, socialPlatform });
 
   res.status(200).json(result);
 });
