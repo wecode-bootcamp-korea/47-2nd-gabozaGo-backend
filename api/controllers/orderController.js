@@ -24,4 +24,12 @@ const orderWithPoint = catchAsync(async (req, res) => {
   return res.status(201).json({ message: "RESERVATION_SUCCESS" });
 });
 
-module.exports = { orderWithPoint };
+const checkCapacity = catchAsync(async (req, res) => {
+  const storeActivityId = req.params.storeActivityId;
+
+  const capacityList = await orderService.capacityListCheck(storeActivityId);
+
+  res.status(200).json({ capacityList });
+});
+
+module.exports = { orderWithPoint, checkCapacity };
