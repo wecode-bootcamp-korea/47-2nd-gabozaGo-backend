@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const { createApp } = require("./app");
 const DataSource = require("./api/models/dataSource");
+const { reservationStatusUpdater } = require("./api/utils/dbUpdater");
 
 const startServer = async () => {
   const app = createApp();
@@ -17,6 +18,8 @@ const startServer = async () => {
         console.error("Error during Data Source initialization:", err);
       });
   });
+
+  reservationStatusUpdater;
 };
 
 startServer();
