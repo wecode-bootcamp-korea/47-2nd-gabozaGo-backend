@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const storeActivityRouter = require("./storeActivityRouter");
 const userRouter = require("./userRouter");
 const spotsRouter = require("./spotsRouter");
@@ -8,6 +9,7 @@ const reviewsRouter = require("./reviewsRouter");
 const likesRouter = require("./likesRouter");
 const orderRouter = require("./orderRouter");
 const reservationRouter = require("./reservationRouter");
+const activityDetailRouter = require("./activityDetailRouter");
 
 router.use("/users", userRouter);
 router.use("/activities", activitiesRouter);
@@ -17,5 +19,5 @@ router.use("/storeActivities", storeActivityRouter);
 router.use("/likes", likesRouter);
 router.use("/order", orderRouter);
 router.use("/reservation", reservationRouter);
-
+router.use("/detailMain", activityDetailRouter);
 module.exports = router;
