@@ -7,20 +7,26 @@ const loginRequired = async (req, res, next) => {
   if (!accessToken) {
     const error = new Error("NEED_ACCESS_TOKEN");
     error.statusCode = 401;
-    throw error;
+    next(error);  
+    return;
   }
 
-  const decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
-  const user = await userDao.getUserById(decodedToken.userId);
+  try {
+    const decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
+    const user = await userDao.getUserById(decodedToken.userId);
 
-  if (!user) {
-    const error = new Error("INVALID_ACCESS_TOKEN");
-    error.statusCode = 401;
-    throw error;
+    if (!user) {
+      const error = new Error("INVALID_ACCESS_TOKEN");
+      error.statusCode = 401;
+      next(error);  
+      return;
+    }
+  
+    req.user = user;
+    next();
+  } catch (err) {
+    next(err);  
   }
-
-  req.user = user;
-  next();
 };
 
 const mainPageRequired = async (req, res, next) => {
@@ -34,15 +40,15 @@ const mainPageRequired = async (req, res, next) => {
     if (!user) {
       const error = new Error("INVALID_ACCESS_TOKEN");
       error.statusCode = 401;
-      throw error;
+      next(error);  
+      return;
     }
     req.user = user;
     next();
   } catch (err) {
-    const error = new Error("INVALID_ACCESS_TOKEN");
-    error.statusCode = 401;
-    throw error;
+    next(err);  
   }
 };
+
 
 module.exports = { loginRequired, mainPageRequired };
