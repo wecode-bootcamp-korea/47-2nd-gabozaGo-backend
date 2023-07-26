@@ -8,6 +8,7 @@ const reservationService = require("./reservationService");
 const activityDetailService = require("./activityDetailService");
 const reviewsService = require("./reviewsService");
 
+
 module.exports = {
   activitiesService,
   userService,
