@@ -6,6 +6,7 @@ const storeActivityController = require("./storeActivityController");
 const likesController = require("./likesController");
 const orderController = require("./orderController");
 const reservationController = require("./reservationController");
+const activityDetailController = require("./activityDetailController");
 
 module.exports = {
   activitiesController,
@@ -16,4 +17,5 @@ module.exports = {
   likesController,
   storeActivityController,
   reservationController,
+  activityDetailController,
 };

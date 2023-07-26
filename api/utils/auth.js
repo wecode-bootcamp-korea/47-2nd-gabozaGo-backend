@@ -29,7 +29,7 @@ const loginRequired = async (req, res, next) => {
   }
 };
 
-const mainPageRequired = async (req, res, next) => {
+const tokenRequiredOrNot = async (req, res, next) => {
   const accessToken = req.headers.authorization;
   if (!accessToken) {
     return next();
@@ -51,4 +51,5 @@ const mainPageRequired = async (req, res, next) => {
 };
 
 
-module.exports = { loginRequired, mainPageRequired };
+
+module.exports = { loginRequired, tokenRequiredOrNot };

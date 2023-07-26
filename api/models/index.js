@@ -7,6 +7,7 @@ const storeActivityDao = require("./storeActivityDao");
 const likesDao = require("./likesDao");
 const orderDao = require("./orderDao");
 const reservationDao = require("./reservationDao");
+const activityDetailDao = require("./activityDetailDao");
 
 module.exports = {
   dataSource,
@@ -20,4 +21,5 @@ module.exports = {
   storeActivityDao,
   likesDao,
   reservationDao,
+  activityDetailDao,
 };
