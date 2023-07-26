@@ -20,7 +20,14 @@ const signIn = catchAsync(async (req, res) => {
   return res.status(200).json({ accessToken: accessToken });
 });
 
+const getUserInfo = catchAsync(async (req, res) => {
+  const userId = req.user.id;
+  const result = await userService.getUserInfo(userId);
+  res.status(200).json(result);
+});
+
 module.exports = {
   signIn,
   updateUserInfo,
+  getUserInfo,
 };

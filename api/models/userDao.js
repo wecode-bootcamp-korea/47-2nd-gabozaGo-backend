@@ -52,6 +52,31 @@ const getUserBySocialId = async (socialId) => {
   return result;
 };
 
+const getUserInfo = async (userId) => {
+  const result = await dataSource.query(
+    `SELECT
+      users.id,
+      users.name,
+      users.phone_number AS phoneNumber,
+      users.point,
+      JSON_OBJECT('id', ANY_VALUE(spots.id), 'name', ANY_VALUE(spots.name)) AS spot,
+      JSON_ARRAYAGG(JSON_OBJECT('id', activities.id, 'name', activities.name)) AS activities
+    FROM
+      users
+    LEFT JOIN user_Spots ON users.id = user_Spots.user_Id
+    LEFT JOIN spots ON user_Spots.spot_id = spots.id
+    LEFT JOIN user_Activities ON users.id = user_Activities.user_Id
+    LEFT JOIN activities ON user_Activities.activity_id = activities.id
+    WHERE users.id = ?
+    GROUP BY users.id, users.name, users.phone_number, users.point`,
+    [userId]
+  );
+  return result;
+};
+
+
+
+
 const getUserById = async (id) => {
   const [user] = await dataSource.query(
     `SELECT
@@ -86,4 +111,5 @@ module.exports = {
   signUp,
   getUserById,
   updateUserInfo,
+  getUserInfo,
 };

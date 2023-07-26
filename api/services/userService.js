@@ -73,7 +73,12 @@ const updateUserInfo = async (userId, userSpot, userActivities, { socialPlatform
   }
 };
 
+const getUserInfo = async (userId) => {
+  return await userDao.getUserInfo(userId);
+};
+
 module.exports = {
   updateUserInfo,
   signIn,
+  getUserInfo,
 };
