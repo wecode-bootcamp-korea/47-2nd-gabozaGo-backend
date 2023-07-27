@@ -1,7 +1,12 @@
 const dataSource = require("./dataSource");
 
 const updateUserInfo = {
-  async execute(userId, userSpot, userActivities, { socialPlatform, phoneNumber }) {
+  async execute(
+    userId,
+    userSpot,
+    userActivities,
+    { socialPlatform, phoneNumber }
+  ) {
     const queryRunner = await dataSource.createQueryRunner();
 
     try {
@@ -63,19 +68,16 @@ const getUserInfo = async (userId) => {
       JSON_ARRAYAGG(JSON_OBJECT('id', activities.id, 'name', activities.name)) AS activities
     FROM
       users
-    LEFT JOIN user_Spots ON users.id = user_Spots.user_Id
-    LEFT JOIN spots ON user_Spots.spot_id = spots.id
-    LEFT JOIN user_Activities ON users.id = user_Activities.user_Id
-    LEFT JOIN activities ON user_Activities.activity_id = activities.id
+    LEFT JOIN user_spots ON users.id = user_spots.user_Id
+    LEFT JOIN spots ON user_spots.spot_id = spots.id
+    LEFT JOIN user_activities ON users.id = user_activities.user_Id
+    LEFT JOIN activities ON user_activities.activity_id = activities.id
     WHERE users.id = ?
     GROUP BY users.id, users.name, users.phone_number, users.point`,
     [userId]
   );
   return result;
 };
-
-
-
 
 const getUserById = async (id) => {
   const [user] = await dataSource.query(
