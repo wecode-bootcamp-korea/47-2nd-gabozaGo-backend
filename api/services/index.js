@@ -6,6 +6,7 @@ const storeActivityService = require("./storeActivityService");
 const likesService = require("./likesService");
 const reservationService = require("./reservationService");
 const activityDetailService = require("./activityDetailService");
+const reviewsService = require("./reviewsService");
 
 module.exports = {
   activitiesService,
