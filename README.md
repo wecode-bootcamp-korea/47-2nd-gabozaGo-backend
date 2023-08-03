@@ -1,5 +1,3 @@
-# (작성중)
-
 # **About team gabozaGo**
 
 - FrontEnd: 김수정
@@ -14,6 +12,7 @@
 # Clone Coding project - [다이닝코드](https://www.diningcode.com/)
 
 - 맛집 추천, 빅데이터 분석, 빅데이터 거래
+    - B2B 영역에 있는 빅데이터 분석 및 빅데이터 거래는 현재 구현이 불가능하므로, 엔드유저의 정보에 기반한 추천시스템을 따와 변조한다.
 
 ---
 
@@ -70,6 +69,7 @@
 ### Tech: 우리가 사용할 기술스택
 
 - 기술스택 → 여기서 편집 후 재설정 필요 https://techstack-generator.vercel.app/
+- 동적인 웹페이지 구성 및 '날짜'라는 개념을 적극 활용해야 하는 측면이 있는 만큼, 자바스크립트를 채택하여 동적인 엔드뷰 구성 및 풍부한 생태계에서 오는 각종 라이브러리를 활용한다.
 1. 공통: 자바스크립트
     1. FrontEnd: React, Styled Components, AWS S3
         - <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /><img src="https://techstack-generator.vercel.app/sass-icon.svg" alt="icon" width="65" height="65" /></div>
@@ -89,9 +89,25 @@
 
 ---
 
-# 구현 기능 상세
+# 결과물
 
-***(작성중)(각자 자신이 맡은 개발내용을 적어주세요)***
+## 데모영상
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AUk8vcQAQRM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+## 개발 코드
+
+- [FrontEnd](https://github.com/wecode-bootcamp-korea/47-2nd-gabozaGo-frontend)
+- [BackEnd](https://github.com/wecode-bootcamp-korea/47-2nd-gabozaGo-backend)
+
+## 참고자료
+
+- Notion Teamspace - [team gabozaGo](https://www.notion.so/7c6ef533597847b39be0eea7092ffdde?pvs=21)
+- Trello - [Ticket management](https://trello.com/b/YZxvoPxc/%EA%B0%80%EB%B3%B4%EC%9E%90go)
+- LucideChart - [ERD](https://lucid.app/lucidchart/5a1ee4fb-e210-4b0c-8354-e143d9faa8f6/edit?beaconFlowId=97BA0529691CC26A&invitationId=inv_ccc05c96-743a-4fc6-b03f-2295034af238&page=0_0#)
+
+---
+
+# 구현 기능 상세
 
 ### I. 엔드유저의 관심정보 취득 및 관리 → 회원가입, 로그인 기능
 
@@ -111,7 +127,6 @@
         2. 로그인과 동시에 회원가입을 하게하려면 users table을 다 null 로 해놔야 카카오 api에서 가져오는 정보를 바로 집어넣어준다.
         3. 추가사항을 기입한 유저와 기입안한 유저를 분류하기위해 signup_status 컬럼을 하나 더 만들어서 사용해준다.
         4. signup_status가 0이면 추가기입해야하고 1이면 로그인
-        
 
 ### II. 위치 및 관심정보에 따른 액티비티 추천 → 메인페이지 구성
 
@@ -203,7 +218,6 @@
         4. 찜기능을 누르면 등록을 한번 더 누르면 삭제 되도록 구현한다.
     2. 작동기전
         1. 찜기능을 눌렀을 때 해당 유저id값과 storeActivity 값을 검색해서 결과값이 없다면 등록을 하고 결과값이 있다면 delete가 되도록 연결한다.
-        
 
 ### VI. 유저 지원 기능 → 마이페이지 구성
 
@@ -219,23 +233,7 @@
             4. 해당값을 가져오기위해서 left join을 사용해서 가져와준다.
     2. 찜 목록 조회
         1. 구현 시 고려사항
-            1. Front에서 원하는 값이 무엇인지 물어보고 그값을 가져온다.. 
-            @주현 이 (그냥 이게끝인대.. 뭐라고써야할지모르겠어요….)
-
----
-
-# 데모영상
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AUk8vcQAQRM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
----
-
-# 참고자료
-
-- Notion Teamspace - [team gabozaGo](https://www.notion.so/7c6ef533597847b39be0eea7092ffdde?pvs=21)
-- Trello - [Ticket management](https://trello.com/b/YZxvoPxc/%EA%B0%80%EB%B3%B4%EC%9E%90go)
-- LucideChart - [ERD](https://lucid.app/lucidchart/5a1ee4fb-e210-4b0c-8354-e143d9faa8f6/edit?beaconFlowId=97BA0529691CC26A&invitationId=inv_ccc05c96-743a-4fc6-b03f-2295034af238&page=0_0#)
-- Postman - team gabozaGo API ***(→ 작성중)***
+            1. Front에서 원하는 값이 무엇인지 물어보고 그값을 가져온다.
 
 ---
 
@@ -278,3 +276,5 @@
 
 - 이 프로젝트는 [다이닝코드](https://www.diningcode.com/) 사이트를 참조하여 학습목적으로 만들었습니다.
 - 실무수준의 프로젝트 이지만 학습용으로 만들었기 때문에 이 코드를 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제가 될 수 있습니다.
+
+---
