@@ -92,7 +92,7 @@
 # 결과물
 
 ## 데모영상
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AUk8vcQAQRM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+https://www.youtube.com/embed/AUk8vcQAQRM
 
 ## 개발 코드
 
